@@ -12,12 +12,13 @@ private:
     Display *d;
     XEvent e;
     GC gc;
+    int s, x, y;
+    uint w, h;
     const char *msg = "HelloWorld";
-    int s;
 
-    public:;
-    void createNewWindow(int x, int y, uint w, uint h);
-    void createNewControl(int x, int y, uint w, uint h);
+public:
+    void createNewWindow(int _x, int _y, uint _w, uint _h);
+    void gui();
     void destroy();
     int run();
 };
