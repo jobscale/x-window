@@ -8,6 +8,6 @@ int main(int argc, char **argv) {
 
     while(win.run()) {
 
-    }
+    } 
     return 1;
 }
