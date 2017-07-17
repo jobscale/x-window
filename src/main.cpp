@@ -1,4 +1,4 @@
-#include "../include/myWindow.h"
+#include "myWindow.h"
 
 myWindow win;
 
@@ -8,6 +8,6 @@ int main(int argc, char **argv) {
 
     while(win.run()) {
 
-    } 
+    }
     return 1;
 }

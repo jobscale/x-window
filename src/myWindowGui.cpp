@@ -1,4 +1,4 @@
-#include "../include/myWindow.h"
+#include "myWindow.h"
 
 
 void myWindow::gui() {

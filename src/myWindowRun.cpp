@@ -1,4 +1,4 @@
-#include "../include/myWindow.h"
+#include "myWindow.h"
 
 int myWindow::run() {
     while(XPending(d) > 0) {

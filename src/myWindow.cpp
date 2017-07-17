@@ -1,4 +1,4 @@
-#include "../include/myWindow.h"
+#include "myWindow.h"
 
 void myWindow::createNewWindow(int _x, int _y, uint _w, uint _h) {
 
