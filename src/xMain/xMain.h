@@ -6,16 +6,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-class myWindow {
+class xMain {
 private:
     Window window;
     Display *d;
-    XEvent e;
     GC gc;
-    int s, x, y;
     uint w, h;
     const char *msg = "HelloWorld";
-
 public:
     void createNewWindow(int _x, int _y, uint _w, uint _h);
     void gui();

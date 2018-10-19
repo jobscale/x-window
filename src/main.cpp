@@ -1,13 +1,9 @@
-#include "myWindow.h"
+#include "xMain/xMain.h"
 
-myWindow win;
+xMain win;
 
 int main(int argc, char **argv) {
-
     win.createNewWindow(100, 100, 1000, 1000);
-
-    while(win.run()) {
-
-    }
-    return 1;
+    for (; win.run(); ) ;
+    return 0;
 }
