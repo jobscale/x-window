@@ -1,7 +1,6 @@
 #include "xMain.h"
 
 Who::Who() {
-  Rect rect = Rect(0, 0, 300, 300);
   window = XCreateSimpleWindow(display, RootWindow(display, 0), rect.x, rect.y, rect.w, rect.h, 1, black, white);
   XSetWMProtocols(display, window, &wm_delete_window, 1);
   XMapWindow(display, window);

@@ -22,13 +22,13 @@ protected:
   const char* fontFamily = "VL ゴシック";
   Display *const display = XOpenDisplay(NULL);
   Atom wm_delete_window = XInternAtom(display, "WM_DELETE_WINDOW", False);
+  Rect rect = Rect(0, 0, 300, 300);
+  const unsigned long black = BlackPixel(display, 0);
+  const unsigned long white = WhitePixel(display, 0);
   Bool ctrl_flag = False;
   GC gc;
   Window window;
-  const unsigned long black = BlackPixel(display, 0);
-  const unsigned long white = WhitePixel(display, 0);
   Colormap cmap;
-  Rect rect = Rect(0, 0, 300, 300);
   XftColor xColor;
   XftFont* xFont;
   XftDraw* draw;
@@ -38,13 +38,14 @@ class Who : WinBase {
 public:
   Who();
   virtual ~Who();
-  void Terminate();
+  int Run();
   void Destroy();
+protected:
+  void Terminate();
   void Draw();
   void CheckKey(int type, KeySym sym);
   void ChangeWindow(XConfigureEvent& xconfigure);
   bool OnEvent(XEvent& event);
-  int Run();
 };
 
 #endif // __X_MAIN__
