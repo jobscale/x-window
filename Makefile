@@ -5,11 +5,11 @@ BUILD_DIR = build
 SRC_DIR = src
 
 CC = g++
-CFLAGS = -Wall
-LIB = -lX11
+CFLAGS = -Wall -W -Wformat=0 -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wfloat-equal -Wpointer-arith -I/usr/include/freetype2
+LIB = -lX11 -lXft
 
 SRC = $(wildcard $(SRC_DIR)/*.cpp $(SRC_DIR)/*/*.cpp)
-INC = $(wildcard $(SRC_DIR)/*.h $(SRC_DIR)/*/*.h)
+INC = $(wildcard $(SRC_DIR)/*.h $(SRC_DIR)/*/*.h) Makefile
 OBJ = $(patsubst $(SRC_DIR)/%,$(BUILD_DIR)/%,$(SRC:.cpp=.o))
 CLEAR = rm -fr $(BUILD_DIR)/*
 
@@ -19,10 +19,13 @@ $(BIN_DIR)/$(PROG_NAME): $(OBJ)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC)
 	@mkdir -p $(BUILD_DIR)/$*
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $< -g -O0
 
 run: $(BIN_DIR)/$(PROG_NAME)
 	$(MAKE) && $^
+
+all:
+	$(CLEAR) && $(MAKE)
 
 clean:
 	$(CLEAR)

@@ -1,22 +1,28 @@
 #include "xMain.h"
 
-void xMain::createNewWindow(int _x, int _y, uint _w, uint _h) {
-    int x  = _x;
-    int y = _y;
-    w = _w;
-    h = _h;
-    d = XOpenDisplay(NULL);
-    if (d == NULL) {
-        fprintf(stderr, "Cannot open display.\n");
-        exit(1);
-    }
-    int s;
-    gc = DefaultGC(d, s);
-    s = DefaultScreen(d);
-    window = XCreateSimpleWindow(d, RootWindow(d, s), x, y,  w, h, 1, BlackPixel(d, s), WhitePixel(d, s));
-    XSelectInput(d, window, ExposureMask | KeyPressMask | StructureNotifyMask);
-    XMapWindow(d, window);
+Who::Who() {
+  Rect rect = Rect(0, 0, 300, 300);
+  window = XCreateSimpleWindow(display, RootWindow(display, 0), rect.x, rect.y, rect.w, rect.h, 1, black, white);
+  XSetWMProtocols(display, window, &wm_delete_window, 1);
+  XMapWindow(display, window);
+  XSelectInput(display, window, ExposureMask | KeyPressMask | KeyReleaseMask | StructureNotifyMask);
+  gc = XCreateGC(display, window, 0, 0);
+  cmap = DefaultColormap(display, 0);
+  XftColorAllocName(display, DefaultVisual(display, 0), cmap, color, &xColor);
+  draw = XftDrawCreate(display, window, DefaultVisual(display, 0), cmap);
+  xFont = XftFontOpen(display, 0, XFT_FAMILY, XftTypeString, fontFamily, XFT_SIZE, XftTypeDouble, 24.0, 0);
 }
-void xMain::destroy() {
-    XCloseDisplay(d);
+
+Who::~Who() {
+  XSetCloseDownMode(display, DestroyAll);
+  XCloseDisplay(display);
+}
+
+void Who::Terminate() {
+  delete this;
+}
+
+void Who::Destroy() {
+  XftDrawDestroy(draw);
+  XDestroyWindow(display, window);
 }
