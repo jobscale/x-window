@@ -1,0 +1,10 @@
+{
+  "users": [{
+    "name": "alice",
+    "profile": {
+      "land": "Japan",
+      "age": 21
+    },
+    "friends": ["bob", "jams"]
+  }]
+}
